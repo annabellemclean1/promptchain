@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/promptchain.iml" filepath="$PROJECT_DIR$/.idea/promptchain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/prompt-chain-tool.iml" filepath="$PROJECT_DIR$/.idea/prompt-chain-tool.iml" />
     </modules>
   </component>
 </project>
