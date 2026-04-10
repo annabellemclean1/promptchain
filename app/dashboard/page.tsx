@@ -196,27 +196,20 @@ const testFlavor = async () => {
     });
 
     if (!res.ok) {
-        // This catches 500 errors from the server (e.g., if the AI pipeline crashed)
-        const errorText = await res.text();
-        throw new Error(`Server Error: ${errorText}`);
+      const errorText = await res.text();
+      throw new Error(`Server Error: ${errorText}`);
     }
 
-    // Get the response as text first to handle potential "yapping" from the AI
     const rawText = await res.text();
 
     try {
-      // Attempt to parse the text as JSON
       const data = JSON.parse(rawText);
 
-      // Ensure results are always treated as an array for the UI
-      setTestResults(Array.isArray(data) ? data : [data]);
-
-      // If your app needs to refresh the list after testing, keep this:
-      // if (typeof loadFlavorCaptions === 'function') loadFlavorCaptions(selectedFlavor.id);
+      // Normalize to array whether AI returns one object or many
+      const parsed = Array.isArray(data) ? data : [data];
+      setTestResults(parsed);
 
     } catch (parseError) {
-      // This is where the "Unexpected token T" used to happen.
-      // Now we log the raw text so you can see exactly what the AI wrote.
       console.error("AI returned prose instead of JSON:", rawText);
       throw new Error("AI output error: The AI sent a sentence instead of a list. Check your Step 3 Prompt.");
     }
@@ -227,7 +220,6 @@ const testFlavor = async () => {
     setTestLoading(false);
   }
 };
-
   const panel = { background: 'var(--bg-panel)', border: '1px solid var(--border)', borderRadius: '8px' }
 
   return (
