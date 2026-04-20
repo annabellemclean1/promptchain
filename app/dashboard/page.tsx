@@ -37,7 +37,7 @@ export default function DashboardPage() {
   const [testLoading, setTestLoading] = useState(false)
   const [testResults, setTestResults] = useState<any[]>([])
   const [testError, setTestError] = useState('')
-  const [token, setToken] = useState('')
+
 
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
@@ -46,9 +46,7 @@ export default function DashboardPage() {
   useEffect(() => {
     loadFlavors()
     loadImages()
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setToken(session?.access_token ?? '')
-    })
+
   }, [])
 
   useEffect(() => {
