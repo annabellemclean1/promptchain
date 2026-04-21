@@ -114,8 +114,10 @@ body {
   border-color: var(--teal);
   color: var(--teal);
 }
-[data-theme='dark'] .btn-teal,
-@media (prefers-color-scheme: dark) { .btn-teal { background: rgba(34,211,238,0.1); } }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .btn-teal { background: rgba(34,211,238,0.1); }
+}
+[data-theme='dark'] .btn-teal { background: rgba(34,211,238,0.1); }
 
 .input {
   width: 100%;
