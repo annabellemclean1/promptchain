@@ -43,7 +43,14 @@ export default function DashboardPage() {
 
   useEffect(() => { loadFlavors(); loadImages() }, [])
   useEffect(() => {
-    if (selectedFlavor) { loadSteps(selectedFlavor.id); loadFlavorCaptions(selectedFlavor.id) }
+    if (selectedFlavor) {
+      loadSteps(selectedFlavor.id)
+      loadFlavorCaptions(selectedFlavor.id)
+      // ── clear stale test state from previous flavor ──
+      setTestResults([])
+      setTestError('')
+      setTestLoading(false)
+    }
   }, [selectedFlavor])
 
   const loadFlavors = async () => {
